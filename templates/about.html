@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
    <head>
-      <meta charset="utf-8">
-      <title>Home for Simple Flask Website</title>
+     <meta charset="utf-8">
+     {% if title %}
+     <title>{{ title }} - Quaruntine Jeopardy </title>
+     {% else %}
+     <title>Quaruntine Jeopardy</title>
+     {% endif %}
    </head>
    <body>
-      {% extends "template.html" %}
+      {% extends "base.html" %}
       {% block content %}
-      <h1> ABOUT </h1>
-      <p> Flask is a Fun and easy framework</p>
-      <p> Flask and HTML in python looks cool</p>
+      <h1> About the Game</h1>
+      <p> What is the game?</p>
+      <p> How do I play?</p>
       {% endblock %}
    </body>
 </html>

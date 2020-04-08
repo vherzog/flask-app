@@ -1,9 +1,9 @@
 from flask import Flask, render_template, session
+from forms.enterGameForm import EnterGameForm
 
 application = Flask(__name__)
 application.debug = True
-application.secret_key = 'chesneyandozy'
-application.config['SESSION_TYPE'] = 'filesystem'
+application.config['SECRET_KEY'] = 'DontTellAnyone'
 
 @application.route('/', methods=['GET'])
 def home():
@@ -42,6 +42,13 @@ def pageNum(page):
     else:
         session['sum'] += page
     return "<p>Congrats! You successfully opened this page. Add /{NUMBER} to continuing counting.\n Current count: " + str(session['sum']) + ".</p>"
+
+@application.route('/join', methods=['GET', 'POST'])
+def join():
+  form = EnterGameForm()
+  if form.validate_on_submit():
+      return "Entered game!"
+  return render_template('join.html', title='Join A Game', form=form)
 
 
 if __name__ == "__main__":
